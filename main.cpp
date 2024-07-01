@@ -109,11 +109,11 @@ int main()
 
     LPVOID baseAddress;
 
-    std::cout << "enter the base address to search from (in hex): ";
+    INFO("enter the base address to search from (in hex):");
     std::cin >> std::hex >> baseAddress;
 
     int value;
-    std::cout << "enter the value to search for: ";
+    INFO("enter the value to search for: ")
     std::cin >> value;
 
     // scan the memory

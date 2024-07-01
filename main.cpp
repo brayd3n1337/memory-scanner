@@ -55,17 +55,17 @@ void ScanMemory(const HANDLE handle, const void* baseAddressToSearch, const int&
 
                 if (success && bytesRead == sizeof(valueRead))
                 {
-                    INFO("successfully read memory address: " << addressToFind << " value: " << valueRead);
+                    INFO("successfully read memory address: " << addressToFind << " value: " << valueRead)
 
                     if (valueRead == valueToFind)
                     {
-                        INFO("found value " << valueToFind << " at address " << addressToFind);
+                        INFO("found value " << valueToFind << " at address " << addressToFind)
                         break;
                     }
                 }
                 else
                 {
-                    ERROR("failed to read memory at address " << addressToFind << " error: " << GetLastError());
+                    ERROR("failed to read memory at address " << addressToFind << " error: " << GetLastError())
                 }
             }
             else
@@ -90,26 +90,26 @@ int main()
 
     if (handle == nullptr)
     {
-        ERROR("failed to get the handle to the process");
+        ERROR("failed to get the handle to the process")
         return 1;
     }
 
-    INFO("successfully got the handle to the process 0x%p" << handle);
+    INFO("successfully got the handle to the process 0x%p" << handle)
 
     // iterate thru each memory page and print information
     for (const auto& memoryPage : GetMemoryPages(handle))
     {
-        INFO("Memory Page Information");
-        INFO("Base Address: " << memoryPage.BaseAddress);
-        INFO("Region Size: " << memoryPage.RegionSize);
-        INFO("State: " << memoryPage.State);
-        INFO("Protect: " << memoryPage.Protect);
-        INFO("Type: " << memoryPage.Type);
+        INFO("Memory Page Information")
+        INFO("Base Address: " << memoryPage.BaseAddress)
+        INFO("Region Size: " << memoryPage.RegionSize)
+        INFO("State: " << memoryPage.State)
+        INFO("Protect: " << memoryPage.Protect)
+        INFO("Type: " << memoryPage.Type)
     }
 
     LPVOID baseAddress;
 
-    INFO("enter the base address to search from (in hex):");
+    INFO("enter the base address to search from (in hex):")
     std::cin >> std::hex >> baseAddress;
 
     int value;

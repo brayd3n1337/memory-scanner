@@ -34,7 +34,6 @@ std::vector<MEMORY_BASIC_INFORMATION> GetMemoryPages(const HANDLE handle)
 // this was very annoying
 void ScanMemory(const HANDLE handle, const void* baseAddressToSearch, const int& valueToFind)
 {
-    bool found = false;
 
     // for each memory page
     for (const auto& page : GetMemoryPages(handle))
@@ -61,7 +60,6 @@ void ScanMemory(const HANDLE handle, const void* baseAddressToSearch, const int&
                     if (valueRead == valueToFind)
                     {
                         INFO("found value " << valueToFind << " at address " << addressToFind);
-                        found = true;
                         break;
                     }
                 }
@@ -75,12 +73,6 @@ void ScanMemory(const HANDLE handle, const void* baseAddressToSearch, const int&
                 ERROR("cannot access memory at address " << addressToFind << " protection flags prevent access ;(.")
             }
         }
-    }
-
-    if (!found)
-    {
-        // if there is no more values or couldn't find a value at all
-        ERROR("value " << valueToFind << " not found in the memory pages starting from base address " << baseAddressToSearch);
     }
 }
 
